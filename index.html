@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chibi Proposal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fef8f4;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      margin-top: 20px;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .yes { background-color: #28a745; color: white; }
+    .no { background-color: #dc3545; color: white; }
+    #response {
+      margin-top: 20px;
+      font-size: 18px;
+      color: darkred;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Will you go out with me?</h1>
+  <canvas id="chibiCanvas" width="300" height="450"></canvas>
+  <div class="buttons">
+    <button class="yes" onclick="respondYes()">Yes</button>
+    <button class="no" onclick="respondNo()">No</button>
+  </div>
+  <div id="response"></div>
+
+  <script>
+    const canvas = document.getElementById('chibiCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function drawChibi() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Head
+      ctx.beginPath();
+      ctx.arc(150, 120, 40, 0, Math.PI * 2);
+      ctx.fillStyle = '#fde0c3';
+      ctx.fill();
+      ctx.stroke();
+
+      // Eyes
+      ctx.beginPath();
+      ctx.arc(135, 110, 6, 0, Math.PI * 2);
+      ctx.arc(165, 110, 6, 0, Math.PI * 2);
+      ctx.fillStyle = 'black';
+      ctx.fill();
+
+      // Glasses
+      ctx.strokeStyle = 'gray';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(135, 110, 12, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(165, 110, 12, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(143, 110);
+      ctx.lineTo(157, 110);
+      ctx.stroke();
+
+      // Hair
+      ctx.beginPath();
+      ctx.arc(150, 115, 45, Math.PI, 0);
+      ctx.fillStyle = 'black';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(150, 120, 35, Math.PI * 1.1, Math.PI * 1.4);
+      ctx.fillStyle = '#4b4b4b';
+      ctx.fill();
+
+      // Body (jacket)
+      ctx.fillStyle = '#3a3f54';
+      ctx.fillRect(120, 160, 60, 70); // Main body
+      ctx.fillRect(100, 160, 20, 40); // Left sleeve
+      ctx.fillRect(180, 160, 20, 40); // Right sleeve
+
+      // Legs
+      ctx.fillStyle = 'black';
+      ctx.fillRect(125, 230, 15, 40);
+      ctx.fillRect(160, 230, 15, 40);
+
+      // Bag strap
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(110, 80);
+      ctx.lineTo(190, 190);
+      ctx.stroke();
+    }
+
+    function respondYes() {
+      drawChibi();
+      document.getElementById('response').innerText = "Yay! Let's plan our date!";
+    }
+
+    function respondNo() {
+      drawChibi();
+      document.getElementById('response').innerText = "Aww... maybe next time.";
+    }
+
+    drawChibi(); // Initial draw
+  </script>
+</body>
+</html>
